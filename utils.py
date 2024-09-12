@@ -68,12 +68,12 @@ def PSNR(img1,img2,max_value  = 1.):
 
 gt_l_path = {
     'video':{
-        'gt':'/Users/haowang/Desktop/YouKu-VESR/data/H_GT',
-         'l':'/Users/haowang/Desktop/YouKu-VESR/data/L'
+        'gt':'data/H_GT',
+         'l':'data/L'
     },
     'image':{
-        'gt':'/Users/haowang/Desktop/YouKu-VESR/video_image/H_GT',
-        'l' :'/Users/haowang/Desktop/YouKu-VESR/video_image/L'
+        'gt':'video_image/H_GT',
+        'l' :'video_image/L'
     }
 }
 
