@@ -1,0 +1,40 @@
+# Model parameters
+model:
+  name: "SuperResolutionNet"
+  scale_factor: 4
+  img_size: [270,480]
+  img_range: 1
+  depths: [6, 6, 6, 6]
+  embed_dim: 60
+  num_heads: [6, 6, 6, 6]
+  mlp_ratio: 2
+  upsampler: 'pixelshuffledirect'
+  lr: 0.0005
+  window_size: 3
+# Training parameters
+training:
+  batch_size: 1
+  num_epochs: 100
+  learning_rate: 0.001
+  weight_decay: 1e-4
+
+# Data augmentation
+augmentation:
+  patch_size: 128
+  color_jitter:
+    brightness: 0.2
+    contrast: 0.2
+    saturation: 0.2
+    hue: 0.1
+  gaussian_noise:
+    mean: 0.0
+    std: 0.05
+  gaussian_blur:
+    kernel_size: 3
+    sigma: [0.1, 2.0]
+
+# Data loading
+data:
+  num_workers: 0
+  batch_size: 8
+  drop_last: False
