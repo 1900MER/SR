@@ -61,7 +61,7 @@ def PSNR(img1,img2,max_value  = 1.):
     mse = F.mse_loss(img1, img2)
     
     # 计算PSNR
-    psnr = 10 * (torch.log10(max_value) -  torch.log10(mse))
+    psnr = 10 * torch.log10(max_value**2 / mse)
     
     return psnr.item()
 
