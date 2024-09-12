@@ -49,7 +49,7 @@ class YouKuSrDataset(Dataset):
             l_image  = self.transforms(l_image)
         
         # return (torch.from_numpy(gt_image).permute(2,0,1), torch.from_numpy(l_image).permute(2,0,1))
-        return gt_image, l_image
+        return l_image,gt_image
         
         
     def __len__(self):
