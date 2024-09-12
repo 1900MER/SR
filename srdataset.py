@@ -44,13 +44,12 @@ class YouKuSrDataset(Dataset):
         gt_path, l_path = self.data[index]
         gt_image = PIL.Image.open(gt_path)
         l_image  = PIL.Image.open(l_path)
+        print('transfomrs',self.transforms)
         if self.transforms:
             gt_image = self.transforms(gt_image)
             l_image  = self.transforms(l_image)
         
-        # return (torch.from_numpy(gt_image).permute(2,0,1), torch.from_numpy(l_image).permute(2,0,1))
-        return gt_image, l_image
-        
+        return l_image,gt_image
         
     def __len__(self):
         return len(self.data)

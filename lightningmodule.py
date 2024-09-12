@@ -37,6 +37,8 @@ class ModelModule(L.LightningModule):
     
     def training_step(self, batch, batch_idx):
         x, y = batch
+        print('x',x.shape)
+        print('y',y.shape)
         y_hat = self(x)
         loss = F.l1_loss(y_hat, y)
         self.log("train_loss", loss, on_step=True, on_epoch=True, prog_bar=True, logger=True)

@@ -61,19 +61,19 @@ def PSNR(img1,img2,max_value  = 1.):
     mse = F.mse_loss(img1, img2)
     
     # 计算PSNR
-    psnr = 10 * (torch.log10(max_value) -  torch.log10(mse))
+    psnr = 10 * torch.log10(max_value**2 / mse)
     
     return psnr.item()
 
 
 gt_l_path = {
     'video':{
-        'gt':'/Users/haowang/Desktop/YouKu-VESR/data/H_GT',
-         'l':'/Users/haowang/Desktop/YouKu-VESR/data/L'
+        'gt':'data/H_GT',
+         'l':'data/L'
     },
     'image':{
-        'gt':'/Users/haowang/Desktop/YouKu-VESR/video_image/H_GT',
-        'l' :'/Users/haowang/Desktop/YouKu-VESR/video_image/L'
+        'gt':'video_image/H_GT',
+        'l' :'video_image/L'
     }
 }
 
@@ -99,8 +99,8 @@ def create_formatted_number(number_length:int = None,number:int = None):
     return '0'*(number_length-len(str_number))+str_number   
     
 def total_image(h_gt_suffix = None,l_suffix = None,video_number:str= None,frames_per_video:str=None, video_ext =None):
-    gt_images_dir = '/Users/haowang/Desktop/YouKu-VESR/video_image/H_GT/YouKu_'+create_formatted_number(5,video_number) + h_gt_suffix + '/image_'
-    l_images_dir  = '/Users/haowang/Desktop/YouKu-VESR/video_image/L/YouKu_'   +create_formatted_number(5,video_number) + l_suffix    + '/image_'
+    gt_images_dir = 'video_image/H_GT/Youku_'+create_formatted_number(5,video_number) + h_gt_suffix + '/image_'
+    l_images_dir  = 'video_image/L/Youku_'   +create_formatted_number(5,video_number) + l_suffix    + '/image_'
     
     return [ (gt_images_dir+create_formatted_number(4,number)+video_ext,l_images_dir+create_formatted_number(4,number)+video_ext) for number in range(1,frames_per_video+1)]
 

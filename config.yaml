@@ -4,9 +4,9 @@ model:
   scale_factor: 4
   img_size: [270,480]
   img_range: 1
-  depths: [6, 6, 6, 6]
+  depths: [1, 1, 1, 1]
   embed_dim: 60
-  num_heads: [6, 6, 6, 6]
+  num_heads: [1, 1, 1, 1]
   mlp_ratio: 2
   upsampler: 'pixelshuffledirect'
   lr: 0.0005
@@ -36,5 +36,5 @@ augmentation:
 # Data loading
 data:
   num_workers: 0
-  batch_size: 8
+  batch_size: 1
   drop_last: False
