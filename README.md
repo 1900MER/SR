@@ -5,7 +5,9 @@ The Image restoration, including super resolution, image denosing, aims to recov
 $ pip install -r requirements.txt      
 $ python main.py
 ```
-
+## Detail
+The SwinIR model here takes (270,480) size image as input and the scale factor is 4 which makes the output image size is (1080,1920). 
+## Citation
 ```bibtex
 @article{liang2021swinir,
   title={SwinIR: Image Restoration Using Swin Transformer},
