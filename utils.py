@@ -31,18 +31,19 @@ class AddGaussianNoise(object):
     
 train_transforms = torchvision.transforms.Compose(
     [
-        torchvision.transforms.ToTensor(),
+        
         RandomApply(torchvision.transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1), p=0.8),
         RandomApply(AddGaussianNoise(0, 0.05), p=0.5),
         RandomApply(torchvision.transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 2.0)), p=0.5),
-        torchvision.transforms.Lambda(lambda x: x / 255.)
+        torchvision.transforms.ToTensor(),
+        # torchvision.transforms.Lambda(lambda x: x / 255.)
     ]
 )
 
 test_transforms = torchvision.transforms.Compose(
     [
         torchvision.transforms.ToTensor(),
-        torchvision.transforms.Lambda(lambda x: x / 255.)
+        # torchvision.transforms.Lambda(lambda x: x / 255.)
     ]
 )
 
