@@ -26,7 +26,7 @@ def load_model(config=None, ckpt:str = 'model.pth'):
         )
         if ckpt:
             model.load_state_dict(torch.load('model.pth', map_location=torch.device('cpu')))
-        return model
+    return model
          
         
 def eval(model,args):
