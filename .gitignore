@@ -4,3 +4,4 @@ __pycache__
 video_image/H_GT/*
 video_image/L/*
 raw_data
+model.pth

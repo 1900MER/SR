@@ -8,11 +8,11 @@ import torch
 from torchvision import transforms
 from PIL import Image
 
-def load_model(config=None, ckpt:str = None):
-    if ckpt:
+def load_model(config=None, ckpt:str = 'model.pth'):
+    if ckpt and not ckpt.endswith('pth'):
         return ModelModule.load_from_checkpoint(checkpoint_path=ckpt)
     else:
-        return ModelModule(
+        model =  ModelModule(
             window_size= config['model']['window_size'],
             up_scale   = config['model']['scale_factor'],
             img_size   = config['model']['img_size'],
@@ -24,6 +24,11 @@ def load_model(config=None, ckpt:str = None):
             upsampler  = config['model']['upsampler'],
             lr         = config['model']['lr']
         )
+        if ckpt:
+            model.load_state_dict(torch.load('model.pth', map_location=torch.device('cpu')))
+        return model
+         
+        
 def eval(model,args):
     dataset = YouKuSrDataset()
     dl = DataLoader(dataset=dataset,batch_size=args.b,num_workers=args.num_workers)
