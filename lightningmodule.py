@@ -53,6 +53,15 @@ class ModelModule(L.LightningModule):
         self.log('PSNR',psnr)
         return loss
     
+    def test_step(self, batch, batch_idx):
+        x, y = batch
+        y_hat = self(x)
+        loss = F.l1_loss(y_hat, y)
+        psnr = PSNR(y_hat,y)
+        self.log('test_loss', loss)
+        self.log('test_PSNR',psnr)
+
+    
     def configure_optimizers(self):
         optimizer = torch.optim.AdamW(self.parameters(), lr=self.lr)
         lr_scheduler_config = {

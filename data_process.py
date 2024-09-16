@@ -35,12 +35,11 @@ def convert_video_image_all(patial_frac:float = None, gt_l:str = None) -> None:
             if not os.path.exists(path_to_store_image):
                 os.mkdir(path_to_store_image)
             video2img(video_path,path_to_store_image+'/image_%04d.jpg')
-            
 
             
 
 if __name__ == '__main__':
-    convert_video_image_all(patial_frac=1,gt_l='l')
+    convert_video_image_all(patial_frac=1,gt_l='gt')
     #read_img('/Users/haowang/Desktop/YouKu-VESR/video_image/image_0007.jpg')
 #    h_img  = read_img('/Users/haowang/Desktop/YouKu-VESR/video_image/L/Youku_00000_l/image_0001.jpg')
     # print(h_img.shape)

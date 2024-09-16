@@ -10,7 +10,7 @@ from lightning.pytorch.loggers import CSVLogger
 from datamodule import SRDataModule
 from lightningmodule import ModelModule
 from utils import test_transforms, train_transforms
-
+import argparse
 seed_everything(42)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
@@ -57,8 +57,10 @@ def create_modelModule(config):
         upsampler  = config['model']['upsampler'],
         lr         = config['model']['lr']
     )
-def main():
-    config = load_config('config.yaml')
+
+
+def main(args):
+    config = load_config(args.config)
     
     model = create_modelModule(config)
     datamodule = create_dataModule(config)
@@ -80,4 +82,7 @@ def main():
     trainer.fit(model=model,datamodule=datamodule)
 
 if __name__=='__main__':
-    main()
+    parser = argparse.ArgumentParser(description='Arg Parser')
+    parser.add_argument('-config','--c' ,help='The path to configuration file')
+    args = parser.parse_args()
+    main(args)

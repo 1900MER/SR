@@ -1,4 +1,6 @@
 data
 __pycache__
 .DS_Store
-video_image
+video_image/H_GT/*
+video_image/L/*
+raw_data
