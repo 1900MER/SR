@@ -99,9 +99,12 @@ def create_formatted_number(number_length:int = None,number:int = None):
     str_number = str(number)
     return '0'*(number_length-len(str_number))+str_number   
     
-def total_image(h_gt_suffix = None,l_suffix = None,video_number:str= None,frames_per_video:str=None, video_ext =None):
-    gt_images_dir = 'video_image/H_GT/Youku_'+create_formatted_number(5,video_number) + h_gt_suffix + '/image_'
-    l_images_dir  = 'video_image/L/Youku_'   +create_formatted_number(5,video_number) + l_suffix    + '/image_'
+def total_image(video_number = None,
+                frames_per_video:str=None, 
+                video_ext =None,
+                split = None):
+    gt_images_dir = 'video_image/'+split+'/H_GT/'+video_number+'h_GT/image_'
+    l_images_dir  = 'video_image/'+split+'/L/'+video_number+'l/image_'
     
     return [ (gt_images_dir+create_formatted_number(4,number)+video_ext,l_images_dir+create_formatted_number(4,number)+video_ext) for number in range(1,frames_per_video+1)]
 

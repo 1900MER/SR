@@ -36,8 +36,8 @@ class SRDataModule(L.LightningDataModule):
     def setup(self, stage: Optional[str] = None) -> None:
         """Creates train, val, and test dataset."""
         if stage == "fit" or stage is None:
-            self.dataset_train = YouKuSrDataset(split='train',val_video=1,transforms=self.train_transforms)
-            self.dataset_val   = YouKuSrDataset(split='val',  val_video=1,transforms=self.val_transforms)
+            self.dataset_train = YouKuSrDataset(split='train',root_dir='video_image/train',transforms=self.train_transforms)
+            self.dataset_val   = YouKuSrDataset(split='val', root_dir='video_image/val',transforms=self.val_transforms)
         
     def train_dataloader(self, *args: Any, **kwargs: Any) -> DataLoader:
         return self._data_loader(self.dataset_train, shuffle=True)

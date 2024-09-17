@@ -26,11 +26,12 @@ def load_model(config=None, ckpt:str = 'model.pth'):
         )
         if ckpt:
             model.load_state_dict(torch.load('model.pth', map_location=torch.device('cpu')))
-        return model
+    return model
          
         
 def eval(model,args):
-    dataset = YouKuSrDataset()
+    ## put the test file under 'video' 
+    dataset = YouKuSrDataset(split='test',root_dir='video_image/test')
     dl = DataLoader(dataset=dataset,batch_size=args.b,num_workers=args.num_workers)
     trainer  = Trainer(devices='auto')
     result = trainer.test(model,dl)
