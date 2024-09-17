@@ -41,6 +41,8 @@ def create_dataModule(config):
         batch_size      = config['data']['batch_size'],
         num_workers     = config['data']['num_workers'],
         drop_last       = config['data']['drop_last'],
+        train_dir       = config['data']['train_dir'],
+        val_dir         = config['data']['val_dir'],
         pin_memory=torch.cuda.is_available()
     )
     
