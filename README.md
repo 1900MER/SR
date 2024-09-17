@@ -6,7 +6,8 @@ $ pip install -r requirements.txt
 ```
 ## Dataset
 Put the train and val dataset in video_image. In each train,val create H_GT and L for low resolution image and ground truth image respectively.
-Then '''bash
+Then 
+'''bash
 $ python main.py
 '''
 To run the training process.
