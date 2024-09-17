@@ -37,7 +37,7 @@ def return_call_back():
 def create_dataModule(config):
     return SRDataModule(
         train_transforms=train_transforms,
-        test_transforms =test_transforms,
+        val_transforms =test_transforms,
         batch_size      = config['data']['batch_size'],
         num_workers     = config['data']['num_workers'],
         drop_last       = config['data']['drop_last'],
