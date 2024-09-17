@@ -30,7 +30,8 @@ class YouKuSrDataset(Dataset):
             self.data.extend(total_image(file_name,
                                          self.frames_video,
                                          self.image_ext,
-                                         self.split)
+                                         self.split,
+                                         self.root_dir)
                              )
         
         random.shuffle(self.data)

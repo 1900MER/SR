@@ -31,11 +31,11 @@ class AddGaussianNoise(object):
     
 train_transforms = torchvision.transforms.Compose(
     [
-        
+        torchvision.transforms.ToTensor(),
         RandomApply(torchvision.transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1), p=0.8),
         RandomApply(AddGaussianNoise(0, 0.05), p=0.5),
         RandomApply(torchvision.transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 2.0)), p=0.5),
-        torchvision.transforms.ToTensor(),
+        
         # torchvision.transforms.Lambda(lambda x: x / 255.)
     ]
 )
@@ -102,9 +102,10 @@ def create_formatted_number(number_length:int = None,number:int = None):
 def total_image(video_number = None,
                 frames_per_video:str=None, 
                 video_ext =None,
-                split = None):
-    gt_images_dir = 'video_image/'+split+'/H_GT/'+video_number+'h_GT/image_'
-    l_images_dir  = 'video_image/'+split+'/L/'+video_number+'l/image_'
+                split = None,
+                root_dir = None):
+    gt_images_dir = root_dir+'/H_GT/'+video_number+'h_GT/image_'
+    l_images_dir  = root_dir+'/L/'+video_number+'l/image_'
     
     return [ (gt_images_dir+create_formatted_number(4,number)+video_ext,l_images_dir+create_formatted_number(4,number)+video_ext) for number in range(1,frames_per_video+1)]
 

@@ -19,13 +19,13 @@ class SRDataModule(L.LightningDataModule):
                  **kwargs: Any) -> None:
         super().__init__()
         self.batch_size = batch_size 
-        self.num_workers = num_workers
-        self.drop_last = drop_last
+        self.num_workers= num_workers
+        self.drop_last  = drop_last
         self.pin_memory = pin_memory
         self.train_transforms = train_transforms
-        self.val_transforms = val_transforms
-        self.train_dir = train_dir
-        self.val_dir = val_dir
+        self.val_transforms   = val_transforms
+        self.train_dir  = train_dir
+        self.val_dir    = val_dir
     def _data_loader(self, dataset: Dataset, shuffle: bool = False) -> DataLoader:
         return DataLoader(
             dataset,
@@ -40,12 +40,11 @@ class SRDataModule(L.LightningDataModule):
         """Creates train, val, and test dataset."""
         if stage == "fit" or stage is None:
             self.dataset_train = YouKuSrDataset(split='train',root_dir=self.train_dir, transforms=self.train_transforms)
-            self.dataset_val   = YouKuSrDataset(split='val',  root_dir=self.val_dir, transforms=self.val_transforms)
+            self.dataset_val   = YouKuSrDataset(split='val',  root_dir=self.val_dir  , transforms=self.val_transforms)
         
     def train_dataloader(self, *args: Any, **kwargs: Any) -> DataLoader:
         return self._data_loader(self.dataset_train, shuffle=True)
 
     def val_dataloader(self, *args: Any, **kwargs: Any) -> Union[DataLoader, List[DataLoader]]:
         return self._data_loader(self.dataset_val)
-
-        
+    
