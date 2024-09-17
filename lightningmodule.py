@@ -49,7 +49,6 @@ class ModelModule(L.LightningModule):
         psnr = PSNR(y_hat,y)
         self.log('val_loss', loss)
         self.log('PSNR',psnr)
-        return loss
     
     def test_step(self, batch, batch_idx):
         x, y = batch
