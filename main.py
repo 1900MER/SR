@@ -83,6 +83,6 @@ def main(args):
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser(description='Arg Parser')
-    parser.add_argument('-config','--c' ,help='The path to configuration file')
+    parser.add_argument('--config','-c' ,help='The path to configuration file')
     args = parser.parse_args()
     main(args)

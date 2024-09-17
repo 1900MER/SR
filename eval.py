@@ -31,7 +31,7 @@ def load_model(config=None, ckpt:str = 'model.pth'):
         
 def eval(model,args):
     ## put the test file under 'video' 
-    dataset = YouKuSrDataset(split='test',root_dir='video_image/test')
+    dataset = YouKuSrDataset(split='test',root_dir=args.test_root_dir)
     dl = DataLoader(dataset=dataset,batch_size=args.b,num_workers=args.num_workers)
     trainer  = Trainer(devices='auto')
     result = trainer.test(model,dl)
@@ -61,6 +61,7 @@ if __name__ == '__main__':
     parser.add_argument('-bs',default=2,type=int)
     parser.add_argument('--num_workers',default=0,type=int)
     parser.add_argument('--img_path')
+    parser.add_argument('--test_root_dir',type = str)
     args = parser.parse_args()
     
     config = load_config(args.config)
